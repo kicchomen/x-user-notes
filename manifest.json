@@ -1,0 +1,26 @@
+{
+  "manifest_version": 3,
+  "name": "X(Twitter) User Annotation",
+  "version": "1.0.0",
+  "description": "Add personal annotations to X (Twitter) users",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "host_permissions": [
+    "https://x.com/*"
+  ],
+  "action": {
+    "default_icon": "icon.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://x.com/*"],
+      "js": ["content.js"],
+      "css": ["styles.css"]
+    }
+  ],
+  "background": {
+    "service_worker": "background.js"
+  }
+}
