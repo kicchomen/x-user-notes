@@ -17,7 +17,10 @@
     {
       "matches": ["https://x.com/*"],
       "js": [
-        "scripts/content.js"
+        "scripts/settings.js",
+        "scripts/content.js",
+        "scripts/extractor.js",
+        "scripts/injector.js"
       ],
       "css": ["styles/styles.css"]
     }

@@ -1,9 +1,39 @@
-.user-annotation-btn {
-  background: none;
-  border: none;
+.follow-notes-area {
+  display: flex;
+  margin-bottom: 5px;
+}
+
+article .follow-notes-area {
+  margin: 5px 0 -5px;
+}
+
+.follow-notes-area .user-annotation-btn {
+  background: white;
   cursor: pointer;
-  font-size: 16px;
   padding: 0 5px;
+  display: inline-block;
+  width: auto;
+  border: 1px solid #bbb;
+  border-radius: 2px;
+  white-space: nowrap;
+  color: #888;
+  font-size: 12px;
+  transition-duration: 0.2s;
+}
+.follow-notes-area .user-annotation-btn:hover {
+  opacity: 0.7;
+}
+
+.follow-notes-area .tags {
+  margin-left: 10px;
+}
+.follow-notes-area .tags .tag {
+  border-radius: 10px;
+  background: #438ddc;
+  color: white;
+  padding: 2px 5px;
+  font-size: 12px;
+  vertical-align: middle;
 }
 
 .user-annotation-popup {
