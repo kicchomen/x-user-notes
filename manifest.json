@@ -20,7 +20,8 @@
         "scripts/settings.js",
         "scripts/content.js",
         "scripts/extractor.js",
-        "scripts/injector.js"
+        "scripts/injector.js",
+        "scripts/storage.js"
       ],
       "css": ["styles/styles.css"]
     }
