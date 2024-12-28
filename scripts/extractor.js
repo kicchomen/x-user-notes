@@ -6,7 +6,7 @@ const Extractor = {
     return article.querySelector('a img')?.src
   },
   extractUserName(article) {
-    return article.querySelectoAll('a')[1].textContent
+    return article.querySelectorAll('a')[1].textContent
   },
   extractAll(article) {
     this.extractUserID(article)
