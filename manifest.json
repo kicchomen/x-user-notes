@@ -11,16 +11,18 @@
     "https://x.com/*"
   ],
   "action": {
-    "default_icon": "icon.png"
+    "default_icon": "assets/icon.png"
   },
   "content_scripts": [
     {
       "matches": ["https://x.com/*"],
-      "js": ["content.js"],
-      "css": ["styles.css"]
+      "js": [
+        "scripts/content.js"
+      ],
+      "css": ["styles/styles.css"]
     }
   ],
   "background": {
-    "service_worker": "background.js"
+    "service_worker": "scripts/background.js"
   }
 }
