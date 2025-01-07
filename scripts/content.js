@@ -54,14 +54,16 @@ async function openAnnotationPopup(user_id) {
   
   // ポップアップ要素を作成
   const popup = document.createElement('div');
-  popup.classList.add('user-annotation-popup');
+  popup.classList.add('overlay');
   popup.innerHTML = `
-    <div class="annotation-header">
-      <h3>Annotation for @${user.latest.name}</h3>
-      <button class="close-btn">×</button>
+    <div class="user-annotation-popup">
+      <div class="annotation-header">
+        <h3>Annotation for @${user.latest.name}</h3>
+        <button class="close-btn">×</button>
+      </div>
+      <textarea id="annotation-text" placeholder="Enter your notes here..."></textarea>
+      <button id="save-annotation">Save</button>
     </div>
-    <textarea id="annotation-text" placeholder="Enter your notes here..."></textarea>
-    <button id="save-annotation">Save</button>
   `;
 
   // 既存のアノテーションをロード
@@ -76,6 +78,9 @@ async function openAnnotationPopup(user_id) {
   // 閉じるボタンのイベントリスナー
   popup.querySelector('.close-btn').addEventListener('click', () => {
     popup.remove();
+  });
+  popup.addEventListener('click', (e) => {
+    if (e.target === popup) popup.remove();
   });
 
   document.body.appendChild(popup);
