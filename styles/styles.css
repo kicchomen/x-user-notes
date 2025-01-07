@@ -8,17 +8,17 @@ article .follow-notes-area {
 }
 
 .follow-notes-area .user-annotation-btn {
-  background: white;
   cursor: pointer;
   padding: 0 5px;
   display: inline-block;
   width: auto;
-  border: 1px solid #bbb;
-  border-radius: 2px;
+  border-radius: 15px;
   white-space: nowrap;
-  color: #888;
   font-size: 12px;
   transition-duration: 0.2s;
+  background: #fffdf5;
+  border: 1px solid #f4e2c7;
+  color: #bd9e64;
 }
 .follow-notes-area .user-annotation-btn:hover {
   opacity: 0.7;
@@ -28,12 +28,15 @@ article .follow-notes-area {
   margin-left: 10px;
 }
 .follow-notes-area .tags .tag {
-  border-radius: 10px;
+  border-radius: 2px;
   background: #438ddc;
   color: white;
   padding: 2px 5px;
   font-size: 12px;
   vertical-align: middle;
+  background: #f3aa15bf;
+  padding: 3px 6px;
+  font-size: 11px;
 }
 
 .user-annotation-popup {
