@@ -20,9 +20,9 @@ const Storage = {
    * @param {string} user_id 
    * @returns user
    */
-  getUser(user_id) {
+  async getUser(user_id) {
     let key = `user:${user_id}`
-    return this.getJson(key)
+    return await this.getJson(key)
   },
   /**
    * @param {User} user
