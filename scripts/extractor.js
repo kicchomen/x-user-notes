@@ -1,12 +1,13 @@
 const Extractor = {
   extractUserID(article) {
-    return article.querySelector('[data-testid="Tweet-User-Avatar"] a')?.href.split('/').pop()
+    return article.querySelector('[data-testid*="UserAvatar-Container-"] a').href.split('/').pop()
   },
   extractUserImage(article) {
     return article.querySelector('[data-testid="Tweet-User-Avatar"] img')?.src
   },
   extractUserName(article) {
-    return article.querySelector('[data-testid="User-Name"] a').textContent
+    const userid = this.extractUserID(article)
+    return article.textContent.split(`@${userid}`).shift()
   },
   extractAll(article) {
     this.extractUserID(article)
