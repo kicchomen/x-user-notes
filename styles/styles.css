@@ -1,3 +1,4 @@
+
 .follow-notes-area {
   display: flex;
   margin-bottom: 5px;
@@ -57,17 +58,34 @@ article .follow-notes-area {
   background: white;
   border: 1px solid #ccc;
   border-radius: 8px;
-  padding: 20px;
+  padding: 0;
   z-index: 1000;
-  width: 300px;
+  width: 500px;
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.user-annotation-popup .annotation-body {
+  padding: 15px 15px 20px;
 }
 
 .annotation-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 10px;
+  padding: 10px;
+  background: #ebe8da;
+  border-radius: 8px 8px 0 0;
+}
+
+h3, h4 {
+  margin: 0;
+}
+
+.annotation-header img {
+  position: relative;
+  top: 6px;
+  width: 26px;
+  margin-right: 5px;
 }
 
 .close-btn {
@@ -79,17 +97,88 @@ article .follow-notes-area {
 
 #annotation-text {
   width: 100%;
-  height: 150px;
-  margin-bottom: 10px;
-  resize: vertical;
+  min-height: 60px;
+  max-height: 120px;
 }
 
-#save-annotation {
+.user-info {
+  display: flex;
+  margin-bottom: 10px;
+}
+
+.user-info img {
+  width: 70px;
+  margin-right: 10px;
+}
+
+.user-info p {
+  margin: 0;
+}
+.user-info p::before {
+  color: #777;
+  font-size: 11px;
+  margin-right: 5px;
+}
+.user-info p.id::before {
+  content: "ID:";
+}
+.user-info p.name::before {
+  content: "Name:";
+}
+
+.user-info a.resync-id-btn {
+  color: #1da1f2;
+  font-size: 11px;
+  margin-left: 25px;
+  cursor: pointer;
+}
+
+.annotation {
+  margin-bottom: 10px;
+}
+
+.annotation textarea,
+.annotation input {
   width: 100%;
-  padding: 10px;
-  background-color: #1da1f2;
+  line-height: 1.2rem;
+  padding: 8px 5px;
+  box-sizing: border-box;
+  border: 1px solid transparent;
+  transition: 0.3s;
+}
+.annotation textarea::placeholder,
+.annotation input::placeholder {
+  color: #aaa;
+}
+.annotation textarea:hover,
+.annotation input:hover {
+  border: 1px solid #ddd;
+}
+.annotation textarea:focus,
+.annotation input:focus {
+  border: 1px solid #888;
+  outline: none;
+}
+
+.annotation > div::before {
+  color: #777;
+  font-size: 11px;
+  margin-right: 5px;
+  display: block;
+}
+.annotation .memo::before {
+  content: "Memo:";
+}
+.annotation .tags::before {
+  content: "Tags:";
+}
+
+.history-btn {
+  border: 1px solid #aaa;
+  border-radius: 20px;
+  padding: 8px;
+  font-size: 12px;
+  background: black;
   color: white;
-  border: none;
-  border-radius: 4px;
   cursor: pointer;
 }
