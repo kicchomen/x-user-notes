@@ -56,10 +56,11 @@ async function openAnnotationPopup(user_id) {
   // ポップアップ要素を作成
   const popup = document.createElement('div');
   popup.classList.add('overlay');
+  const icon_url = chrome.runtime.getURL("assets/logo.png");
   popup.innerHTML = `
     <div class="user-annotation-popup">
       <div class="annotation-header">
-        <h3>Annotation for @${user.latest.name}</h3>
+        <h3><img src="${icon_url}">X Followees Scribble</h3>
         <button class="close-btn">×</button>
       </div>
       <textarea id="annotation-text" placeholder="Enter your notes here..."></textarea>
