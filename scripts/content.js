@@ -22,7 +22,7 @@ function injectAnnotationButtons() {
       if (!user) {
         const name = Extractor.extractUserName(article)
         const image = Extractor.extractUserImage(article)
-        Storage.setUser({
+        const updated_user = {
           id: userid,
           memo: '',
           tags: '',
@@ -35,7 +35,8 @@ function injectAnnotationButtons() {
           },
           history: [],
           version: SYSTEM_VERSION
-        })
+        }
+        Storage.setUser(updated_user)
       }
 
       // TODO: 更新があるユーザのデータ更新
