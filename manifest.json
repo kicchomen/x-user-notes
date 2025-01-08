@@ -12,7 +12,7 @@
     "https://x.com/*"
   ],
   "action": {
-    "default_icon": "assets/icon.png"
+    "default_icon": "assets/logo.png"
   },
   "content_scripts": [
     {
