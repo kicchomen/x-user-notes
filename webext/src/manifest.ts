@@ -14,7 +14,7 @@ export async function getManifest() {
     version: pkg.version,
     description: pkg.description,
     action: {
-      default_icon: './assets/icon-512.png',
+      default_icon: './assets/logo-512.png',
       default_popup: './dist/popup/index.html',
     },
     options_ui: {
@@ -30,9 +30,9 @@ export async function getManifest() {
           service_worker: './dist/background/index.mjs',
         },
     icons: {
-      16: './assets/icon-512.png',
-      48: './assets/icon-512.png',
-      128: './assets/icon-512.png',
+      16: './assets/logo-512.png',
+      48: './assets/logo-512.png',
+      128: './assets/logo-512.png',
     },
     permissions: [
       'tabs',
@@ -40,7 +40,7 @@ export async function getManifest() {
       'activeTab',
       'sidePanel',
     ],
-    host_permissions: ['*://*/*'],
+    host_permissions: ['https://x.com/*'],
     content_scripts: [
       {
         matches: [
@@ -53,7 +53,10 @@ export async function getManifest() {
     ],
     web_accessible_resources: [
       {
-        resources: ['dist/contentScripts/style.css'],
+        resources: [
+          'dist/contentScripts/style.css',
+          'assets/*',
+        ],
         matches: ['<all_urls>'],
       },
     ],

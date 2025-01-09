@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import logo from '~/assets/logo.svg'
+import logo from '~/assets/logo.png'
 import { storageDemo } from '~/logic/storage'
 </script>
 
