@@ -1,3 +1,6 @@
+// TODO: フレームワーク適用（https://github.com/antfu-collective/vitesse-webext）
+
+
 function injectAnnotationButtons() {
   // プロフィール、フォロー一覧、投稿一覧の各ユーザー名に対してボタンを追加
   const articleSelectorPatterns = [
@@ -74,7 +77,7 @@ async function openAnnotationPopup(user_id) {
         </div>
         <div class="annotation">
           <div class="memo">
-            <textarea id="annotation-text" placeholder="ここはメモ欄です。フォローしたきっかけや、過去にどんな絡みをしたかなど、好きに記述してみてください。"></textarea>
+            <textarea id="annotation-text" placeholder="ここはメモ欄です。フォローしたきっかけや、過去にどんな絡みをしたかなど、好きに記述してみてください。" rows="3"></textarea>
           </div>
           <div class="tags">
             <input id="annotation-tags" type="text" placeholder="タグをつける">
