@@ -64,24 +64,24 @@ article .follow-notes-area {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
-.user-annotation-popup .annotation-body {
-  padding: 15px 15px 20px;
-}
-
 .annotation-header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
   padding: 10px;
   background: #ebe8da;
   border-radius: 8px 8px 0 0;
+}
+
+.annotation-header .title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 10px;
 }
 
 h3, h4 {
   margin: 0;
 }
 
-.annotation-header img {
+.annotation-header .title img {
   position: relative;
   top: 6px;
   width: 26px;
@@ -95,6 +95,13 @@ h3, h4 {
   cursor: pointer;
 }
 
+.user-annotation-popup .annotation-body {
+  padding: 15px 15px 20px;
+  border: 5px solid #eae8da;
+  border-top: none;
+  border-radius: 0 0 8px 8px;
+}
+
 #annotation-text {
   width: 100%;
   min-height: 60px;
@@ -103,7 +110,6 @@ h3, h4 {
 
 .user-info {
   display: flex;
-  margin-bottom: 10px;
 }
 
 .user-info img {
@@ -173,11 +179,71 @@ h3, h4 {
   content: "Tags:";
 }
 
-.history-btn {
+.history-btn, .back-btn {
   border-radius: 20px;
   padding: 8px 12px;
   font-size: 12px;
   background: black;
   color: white;
   cursor: pointer;
+}
+
+.history-item {
+  display: flex;
+  position: relative;
+}
+
+.history-item::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 33px;
+  left: 65px;
+  width: 13px;
+  height: 13px;
+  background: #ebe8da;
+  border-radius: 50%;
+  z-index: 1;
+}
+
+.history-item::after {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  top: 30px;
+  left: 62px;
+  width: 19px;
+  height: 19px;
+  background: white;
+  border-radius: 50%;
+}
+
+.history-item .date {
+  width: 60px;
+  margin: 0 20px 0 0;
+  padding-right: 10px;
+  border-right: 3px solid #ffd500;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  flex-shrink: 0;
+}
+
+.history-item .date span {
+  border: 1px solid #ccc;
+  border-radius: 10px;
+  color: #666;
+  padding: 2px 5px;
+  text-align: center;
+  font-size: 10px;
+}
+
+.history-item .user-info {
+  background: #f5f5f5;
+  width: 100%;
+  padding: 10px;
+  margin: 5px;
+}
+.history-item .user-info img {
+  width: 50px;
 }

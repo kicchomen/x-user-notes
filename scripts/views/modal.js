@@ -15,10 +15,11 @@ const ScribbleModalView = {
     popup.innerHTML = `
       <div class="user-annotation-popup">
         <div class="annotation-header">
-          <h3><img src="${icon_url}">X Followees Scribble</h3>
-          <button class="close-btn">×</button>
-        </div>
-        <div class="annotation-body">
+          <div class="title">
+            <h3><img src="${icon_url}">X Followees Scribble</h3>
+            <button class="close-btn">×</button>
+          </div>
+
           <div class="user-info">
             <img src="${user.latest.profile_image_url}" alt="User Image">
             <div>
@@ -27,6 +28,8 @@ const ScribbleModalView = {
               <p class="name">${user.latest.name}</p>
             </div>
           </div>
+        </div>
+        <div class="annotation-body">
           <div class="annotation">
             <div class="memo">
               <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんな絡みをしたかなど、好きに記述してみてください。" rows="3"></textarea>
@@ -64,7 +67,71 @@ const ScribbleModalView = {
     popup.addEventListener('click', (e) => {
       if (e.target === popup) popup.remove();
     });
+
+    // 履歴ボタンのイベントリスナー
+    popup.querySelector('.history-btn').addEventListener('click', () => {
+      this.renderHistory(user);
+    });
   
     document.body.appendChild(popup);
+  },
+
+  renderHistory: async function (user) {
+    this.root.querySelector('.annotation-body').innerHTML = `
+      <div class="history">
+      </div>
+
+      <a class="back-btn">戻る</a>
+    `
+
+    // 戻るボタンのイベントリスナー
+    this.root.querySelector('.back-btn').addEventListener('click', () => {
+      this.renderMain(user);
+    });
+
+    // user.history.forEach()
+    const SAMPLE_HISTORY = [
+      { date: new Date('2025-01-10'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+      { date: new Date('2025-01-09'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+      { date: new Date('2025-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+      { date: new Date('2024-10-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+      { date: new Date('2023-12-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+      { date: new Date('2023-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' }
+    ]
+    SAMPLE_HISTORY.forEach(history => {
+      const historyElm = document.createElement('div')
+      historyElm.classList.add('history-item')
+      historyElm.innerHTML = `
+        <p class="date">
+          <span>${timeAgo(history.date)}</span>
+        </p>
+        <div class="user-info">
+          <img src="${history.profile_image_url}" alt="User Image">
+          <div>
+            <p class="id">@${history.id}</p>
+            <p class="name">${history.name}</p>
+          </div>
+        </div>
+      `
+      this.root.querySelector('.history').appendChild(historyElm)
+    })
   }
+}
+
+
+const timeAgo = function(date) {
+  const now = new Date();
+  const seconds = Math.floor((now - date) / 1000);
+  let interval = Math.floor(seconds / 31536000);
+
+  if (interval > 1) return interval + " 年前";
+  interval = Math.floor(seconds / 2592000);
+  if (interval > 1) return interval + " ヶ月前";
+  interval = Math.floor(seconds / 86400);
+  if (interval > 1) return interval + " 日前";
+  interval = Math.floor(seconds / 3600);
+  if (interval > 1) return interval + " 時間前";
+  interval = Math.floor(seconds / 60);
+  if (interval > 1) return interval + " 分前";
+  return Math.floor(seconds) + " 秒前";
 }
