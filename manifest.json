@@ -22,7 +22,8 @@
         "scripts/content.js",
         "scripts/extractor.js",
         "scripts/injector.js",
-        "scripts/storage.js"
+        "scripts/storage.js",
+        "scripts/views/modal.js"
       ],
       "css": ["styles/styles.css"]
     }
