@@ -18,7 +18,7 @@ function injectAnnotationButtons() {
       if (article.classList.contains(PROCESSED_CLASS)) return
 
       const userid = Extractor.extractUserID(article)
-      const user = await Storage.getUser(userid)
+      let user = await Storage.getUser(userid)
 
       // ユーザデータ未作成の場合は作成
       if (!user) {
@@ -39,6 +39,7 @@ function injectAnnotationButtons() {
           version: SYSTEM_VERSION
         }
         Storage.setUser(updated_user)
+        user = updated_user
       }
 
       // TODO: 更新があるユーザのデータ更新
