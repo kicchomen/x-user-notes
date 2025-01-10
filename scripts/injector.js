@@ -1,3 +1,5 @@
+// TODO: ここは inject 処理に特化して、html の生成は切り分けたい
+
 const ANNOTATION_BUTTON_CLASS = 'user-annotation-btn';
 
 const Injector = {
@@ -15,7 +17,7 @@ const Injector = {
   createOpenButton(callback) {
     const button = document.createElement('button')
     button.classList.add(ANNOTATION_BUTTON_CLASS)
-    button.textContent = '📓 Open Note'
+    button.textContent = '📓 Open Scribble'
     button.addEventListener('click', () => callback())
     return button
   },
@@ -28,6 +30,5 @@ const Injector = {
       <span class="tag">削除よてい</span>
     `
     return tags
-  },
-  openNote(user_id) {}
+  }
 }
