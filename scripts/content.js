@@ -72,12 +72,12 @@ async function openAnnotationPopup(user_id) {
           <div>
             <p class="id">@${user.id}</p>
             <a class="resync-id-btn">→ ユーザ ID が変わったかも？</a>
-            <p class="name">ユーザ名: ${user.latest.name}</p>
+            <p class="name">${user.latest.name}</p>
           </div>
         </div>
         <div class="annotation">
           <div class="memo">
-            <textarea id="annotation-text" placeholder="ここはメモ欄です。フォローしたきっかけや、過去にどんな絡みをしたかなど、好きに記述してみてください。" rows="3"></textarea>
+            <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんな絡みをしたかなど、好きに記述してみてください。" rows="3"></textarea>
           </div>
           <div class="tags">
             <input id="annotation-tags" type="text" placeholder="タグをつける">
