@@ -4,7 +4,7 @@ const ScribbleModalView = {
 
   renderMain: async function (user) {
     // 既存のポップアップを削除
-    const existingPopup = document.querySelector('.user-annotation-popup');
+    const existingPopup = document.querySelector('.overlay');
     if (existingPopup) existingPopup.remove();
     
     // ポップアップ要素を作成
@@ -78,7 +78,7 @@ const ScribbleModalView = {
 
   renderHistory: async function (user) {
     this.root.querySelector('.annotation-body').innerHTML = `
-      <div class="history">
+      <div class="history scrollable">
       </div>
 
       <a class="back-btn">戻る</a>
