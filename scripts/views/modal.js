@@ -32,10 +32,10 @@ const ScribbleModalView = {
         <div class="annotation-body">
           <div class="annotation">
             <div class="memo">
-              <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんな絡みをしたかなど、好きに記述してみてください。" rows="3"></textarea>
+              <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんなやり取りをしたかなど、自由に記述してみてください。" rows="3"></textarea>
             </div>
             <div class="tags">
-              <input id="annotation-tags" type="text" placeholder="タグをつける">
+              <input id="annotation-tags" type="text" placeholder="タグをつけるとタイムライン上で視認することができます">
             </div>
           </div>
   
