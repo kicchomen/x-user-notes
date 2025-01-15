@@ -68,6 +68,16 @@ article .follow-notes-area {
   box-shadow: 0 4px 6px rgba(0,0,0,0.1);
 }
 
+.user-annotation-popup .message {
+  position: absolute;
+  bottom: 20px;
+  right: 20px;
+  background: grey;
+  padding: 5px 10px;
+  color: white;
+  transition: 1s;
+}
+
 .annotation-header {
   padding: 10px;
   background: #ebe8da;

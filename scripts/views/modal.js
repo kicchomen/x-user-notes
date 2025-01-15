@@ -2,7 +2,6 @@
 // TODO: ユーザIDが変わった？機能
 //　　過去の情報を見るボタンが押せないとき、ヒントとして表示するのが直感的でわかりやすいかも
 // TODO: 履歴ページの実データ利用
-// TODO: 保存時にメッセージを表示
 
 
 const ScribbleModalView = {
@@ -120,7 +119,14 @@ const ScribbleModalView = {
   saveScribble: function() {
     const tags = Array.from(this.root.querySelectorAll('.tag')).map(tag => tag.textContent.replace('×', '')).join(',');
     const memo = this.root.querySelector('#annotation-text').value;
-    Storage.setUser({...this.user, memo: memo, tags: tags});
+
+    // 差分がなければ保存しない
+    if (this.user.memo == memo && this.user.tags == tags) return
+
+    this.user = { ...this.user, memo: memo, tags: tags }
+    Storage.setUser(this.user);
+
+    this.Message.info('saved')
   },
 
   renderHistory: async function () {
@@ -162,6 +168,28 @@ const ScribbleModalView = {
       `
       this.root.querySelector('.history').appendChild(historyElm)
     })
+  },
+
+  Message: {
+    AUTO_CLOSE_TIME_MS: 1500,
+
+    info: (text) => {
+      // モーダルの存在確認
+      if (!ScribbleModalView.root) return
+
+      // メッセージの重複対策
+      const already_message = ScribbleModalView.root.querySelector('.message')
+      if (already_message) already_message.remove()
+
+      const message_elm = document.createElement('div')
+      message_elm.classList.add('message')
+      message_elm.innerText = text
+      setTimeout(()=>{
+        if (message_elm) message_elm.remove()
+      }, ScribbleModalView.Message.AUTO_CLOSE_TIME_MS)
+
+      ScribbleModalView.root.querySelector('.user-annotation-popup').appendChild(message_elm)
+    }
   }
 }
 
