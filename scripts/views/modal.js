@@ -134,6 +134,9 @@ const ScribbleModalView = {
     Storage.setUser(this.user);
 
     this.Message.info('saved')
+
+    // タイムライン側に反映
+    updateUserOnTimeline(this.user)
   },
 
   renderHistory: async function () {
@@ -198,6 +201,21 @@ const ScribbleModalView = {
       ScribbleModalView.root.querySelector('.user-annotation-popup').appendChild(message_elm)
     }
   }
+}
+
+
+/**
+ * 特定のユーザに関して、タイムライン上の Scribble 要素を更新
+ * @param {*} user 
+ */
+const updateUserOnTimeline = (user) => {
+  document.querySelectorAll('.processed').forEach((elm) => {
+    const userid = Extractor.extractUserID(elm)
+    if (user.id != userid) return
+
+    elm.classList.remove('processed');
+    elm.querySelector('.follow-notes-area')?.remove()
+  })
 }
 
 
