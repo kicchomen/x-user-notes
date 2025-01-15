@@ -9,7 +9,7 @@ const Injector = {
     const div = document.createElement('div')
     div.classList.add('follow-notes-area')
     const btn = this.createOpenButton(callback)
-    const tags = this.createTags()
+    const tags = this.createTags(user)
     div.appendChild(btn)
     div.appendChild(tags)
     element.insertBefore(div, element.firstChild)
@@ -21,14 +21,27 @@ const Injector = {
     button.addEventListener('click', () => callback())
     return button
   },
-  createTags() {
-    const tags = document.createElement('div')
-    tags.classList.add('tags')
-    tags.innerHTML = `
-      <span class="tag">friend</span>
-      <span class="tag">for campaign</span>
-      <span class="tag">削除よてい</span>
-    `
-    return tags
+  createTags(user) {
+    const root = document.createElement('div')
+    root.classList.add('tags')
+    let tags = user.tags.split(',')
+    tags.forEach(tag => {
+      if (tag === '') return
+
+      const tagElement = document.createElement('span')
+      tagElement.classList.add('tag')
+      tagElement.textContent = tag
+      root.appendChild(tagElement)
+    })
+
+    if (user.memo === '' && user.tags === '') {
+      const tagElement = document.createElement('span')
+      tagElement.classList.add('tag')
+      tagElement.classList.add('no-tag')
+      tagElement.textContent = "no scribble"
+      root.appendChild(tagElement)
+    }
+
+    return root
   }
 }

@@ -40,6 +40,9 @@ article .follow-notes-area {
   padding: 3px 6px;
   font-size: 11px;
 }
+.follow-notes-area .tags .no-tag {
+  background: #ccc;
+}
 
 .overlay {
   position: fixed;
