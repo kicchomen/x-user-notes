@@ -1,6 +1,3 @@
-// TODO: フレームワーク適用（https://github.com/antfu-collective/vitesse-webext）
-
-
 function injectAnnotationButtons() {
   // プロフィール、フォロー一覧、投稿一覧の各ユーザー名に対してボタンを追加
   const articleSelectorPatterns = [

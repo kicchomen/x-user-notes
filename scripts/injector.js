@@ -1,4 +1,5 @@
 // TODO: ここは inject 処理に特化して、html の生成は切り分けたい
+// TODO: タグの更新を反映する
 
 const ANNOTATION_BUTTON_CLASS = 'user-annotation-btn';
 
