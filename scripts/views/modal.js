@@ -136,16 +136,16 @@ const ScribbleModalView = {
       this.renderMain();
     });
 
-    // user.history.forEach()
-    const SAMPLE_HISTORY = [
-      { date: new Date('2025-01-10'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-      { date: new Date('2025-01-09'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-      { date: new Date('2025-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-      { date: new Date('2024-10-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-      { date: new Date('2023-12-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-      { date: new Date('2023-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' }
-    ]
-    SAMPLE_HISTORY.forEach(history => {
+    // const SAMPLE_HISTORY = [
+    //   { date: new Date('2025-01-10'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+    //   { date: new Date('2025-01-09'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+    //   { date: new Date('2025-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+    //   { date: new Date('2024-10-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+    //   { date: new Date('2023-12-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
+    //   { date: new Date('2023-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' }
+    // ]
+    // SAMPLE_HISTORY.forEach(history => {
+    this.user.history.reverse().forEach(history => {
       const historyElm = document.createElement('div')
       historyElm.classList.add('history-item')
       historyElm.innerHTML = `
@@ -168,7 +168,8 @@ const ScribbleModalView = {
 
 const timeAgo = function(date) {
   const now = new Date();
-  const seconds = Math.floor((now - date) / 1000);
+  const created_at = new Date(date)
+  const seconds = Math.floor((now - created_at) / 1000);
   let interval = Math.floor(seconds / 31536000);
 
   if (interval > 1) return interval + " 年前";
