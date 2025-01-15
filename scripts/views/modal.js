@@ -45,8 +45,8 @@ const ScribbleModalView = {
               <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんなやり取りをしたかなど、自由に記述してみてください。" rows="3"></textarea>
             </div>
             <div class="tags">
-              <input id="annotation-tags" type="text" placeholder="タグをつけるとタイムライン上で視認することができます">
               <div id="tags-container"></div>
+              <input id="annotation-tags" type="text" placeholder="タグをつけるとタイムライン上で視認することができます">
             </div>
           </div>
   

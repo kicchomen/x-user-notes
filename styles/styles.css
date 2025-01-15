@@ -149,16 +149,17 @@ h3, h4 {
 }
 
 .annotation {
-  margin-bottom: 10px;
+  margin-bottom: 20px;
 }
 
 .annotation textarea,
 .annotation input {
-  width: 100%;
+  flex-grow: 1;
   line-height: 1.2rem;
   padding: 8px 5px;
   box-sizing: border-box;
-  border: 1px solid transparent;
+  border: none;
+  outline: none;
   transition: 0.3s;
 }
 .annotation textarea::placeholder,
@@ -167,25 +168,40 @@ h3, h4 {
 }
 .annotation textarea:hover,
 .annotation input:hover {
-  border: 1px solid #ddd;
+  /* border: 1px solid #ddd; */
 }
 .annotation textarea:focus,
 .annotation input:focus {
-  border: 1px solid #888;
-  outline: none;
+  /* border: 1px solid #888; */
+  /* outline: none; */
 }
 
+.annotation > div {
+  display: flex;
+  flex-wrap: wrap;
+  position: relative;
+  border: 1px solid #888;
+  margin-top: 10px 0 0 10px;
+  padding: 5px 5px;
+  margin-bottom: 15px;
+  transition: 0.3s;
+}
 .annotation > div::before {
   color: #777;
-  font-size: 11px;
   margin-right: 5px;
   display: block;
+  position: absolute;
+  top: -10px;
+  left: 10px;
+  background: white;
+  padding: 0 5px;
+  font-size: 12px;
 }
 .annotation .memo::before {
-  content: "Memo:";
+  content: "Memo";
 }
 .annotation .tags::before {
-  content: "Tags:";
+  content: "Tags";
 }
 
 #tags-container span.tag {
@@ -195,6 +211,7 @@ h3, h4 {
   border-radius: 2px;
   background: #f3aa15bf;
   color: white;
+  line-height: 30px;
 }
 #tags-container span.tag a {
   cursor: pointer;
