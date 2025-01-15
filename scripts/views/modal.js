@@ -69,14 +69,21 @@ const ScribbleModalView = {
       Storage.setUser({...this.user, memo: memo, tags: tags});
     }
 
-    popup.querySelector('#annotation-text').addEventListener('blur', save);
-    popup.querySelector('#annotation-tags').addEventListener('keypress', (e) => {
-      if (e.key !== 'Enter') return
+    // タグ更新時のイベントハンドラ
+    const changeTagHandler = (e) => {
+      if (!e.target.value) return
 
       e.preventDefault();
       this.addTag(e.target.value);
       e.target.value = '';
       save();
+    }
+
+    popup.querySelector('#annotation-text').addEventListener('blur', save);
+    popup.querySelector('#annotation-tags').addEventListener('blur', changeTagHandler);
+    popup.querySelector('#annotation-tags').addEventListener('keypress', (e) => {
+      if (e.key !== 'Enter') return
+      changeTagHandler(e)
     });
   
     // 閉じるボタンのイベントリスナー
