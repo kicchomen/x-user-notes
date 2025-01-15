@@ -115,14 +115,19 @@ h3, h4 {
 .user-info {
   display: flex;
 }
-
+.user-info > div {
+  flex-grow: 1;
+  overflow: hidden;
+}
 .user-info img {
   width: 70px;
   margin-right: 10px;
 }
-
 .user-info p {
   margin: 0;
+  overflow: hidden;
+  white-space: nowrap;
+  text-overflow: ellipsis;
 }
 .user-info p::before {
   color: #777;
