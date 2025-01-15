@@ -28,10 +28,11 @@ function injectAnnotationButtons() {
       const userid = Extractor.extractUserID(article)
       let user = await Storage.getUser(userid)
 
+      const name = Extractor.extractUserName(article)
+      const image = Extractor.extractUserImage(article)
+
       // ユーザデータ未作成の場合は作成
       if (!user) {
-        const name = Extractor.extractUserName(article)
-        const image = Extractor.extractUserImage(article)
         const updated_user = {
           id: userid,
           memo: '',
@@ -50,7 +51,18 @@ function injectAnnotationButtons() {
         user = updated_user
       }
 
-      // TODO: 更新があるユーザのデータ更新
+      // 更新があるユーザのデータ更新
+      if (user.latest.name != name || user.latest.profile_image_url != image) {
+        user.history.push(user.latest)
+        user.latest = {
+          id: userid,
+          name: name,
+          profile_image_url: image,
+          date: new Date().toISOString(),
+          version: SYSTEM_VERSION
+        }
+        Storage.setUser(user)
+      }
 
       // ボタン挿入
       Injector.inject(article, user, () => {
