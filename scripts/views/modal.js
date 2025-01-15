@@ -60,14 +60,6 @@ const ScribbleModalView = {
     // 既存のアノテーションをロード
     popup.querySelector('#annotation-text').value = this.user.memo;
     this.loadTags(this.user.tags);
-  
-    // 編集時のイベントリスナー
-    const save = () => {
-      // TODO: 保存した旨のメッセージを表示（差分確認する？）
-      const memo = popup.querySelector('#annotation-text').value;
-      const tags = Array.from(popup.querySelectorAll('.tag')).map(tag => tag.textContent.replace('×', '')).join(',');
-      Storage.setUser({...this.user, memo: memo, tags: tags});
-    }
 
     // タグ更新時のイベントハンドラ
     const changeTagHandler = (e) => {
@@ -76,10 +68,10 @@ const ScribbleModalView = {
       e.preventDefault();
       this.addTag(e.target.value);
       e.target.value = '';
-      save();
+      this.saveScribble();
     }
 
-    popup.querySelector('#annotation-text').addEventListener('blur', save);
+    popup.querySelector('#annotation-text').addEventListener('blur', this.saveScribble.bind(this));
     popup.querySelector('#annotation-tags').addEventListener('blur', changeTagHandler);
     popup.querySelector('#annotation-tags').addEventListener('keypress', (e) => {
       if (e.key !== 'Enter') return
@@ -119,13 +111,13 @@ const ScribbleModalView = {
     removeBtn.textContent = '×';
     removeBtn.addEventListener('click', () => {
       tagElement.remove();
-      this.saveTags();
+      this.saveScribble();
     });
     tagElement.appendChild(removeBtn);
     tagsContainer.appendChild(tagElement);
   },
 
-  saveTags: function() {
+  saveScribble: function() {
     const tags = Array.from(this.root.querySelectorAll('.tag')).map(tag => tag.textContent.replace('×', '')).join(',');
     const memo = this.root.querySelector('#annotation-text').value;
     Storage.setUser({...this.user, memo: memo, tags: tags});
