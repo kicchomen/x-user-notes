@@ -9,6 +9,9 @@ function injectAnnotationButtons() {
     // 追加の選択子を必要に応じて追加
   ];
 
+  // おすすめタブでは実行しない
+  if (Extractor.isRecommendTab()) return
+
   // 処理済みのコンポーネントに付与するクラス名
   const PROCESSED_CLASS = 'processed'
   articleSelectorPatterns.forEach(selector => {

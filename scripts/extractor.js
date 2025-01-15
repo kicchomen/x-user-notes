@@ -34,5 +34,20 @@ const Extractor = {
   },
   isRepost(article) {
     return !!article.querySelector('[data-testid="socialContext"]')
-  }
+  },
+
+  // ページ全般の情報取得系
+  isRecommendTab() {
+    const RECOMMEND_TAB_NAMES = ['For you', 'おすすめ']
+
+    const currentTab = document.querySelector('[data-testid="ScrollSnap-List"] [aria-selected="true"]')
+    const tabName = currentTab?.textContent?.trim()
+    if (!tabName) {
+      console.warn('cannot get current tab name')
+      return
+    }
+
+    return (RECOMMEND_TAB_NAMES.indexOf(tabName) !== -1)
+
+  },
 }
