@@ -17,6 +17,11 @@ function injectAnnotationButtons() {
       // すでに処理済みのコンポーネントはスキップ
       if (article.classList.contains(PROCESSED_CLASS)) return
 
+
+      // 広告やリツイートはスキップ
+      if (Extractor.isAd(article)) return
+      if (Extractor.isRepost(article)) return
+
       const userid = Extractor.extractUserID(article)
       let user = await Storage.getUser(userid)
 

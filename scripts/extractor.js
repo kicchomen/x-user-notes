@@ -27,5 +27,12 @@ const Extractor = {
     this.extractUserID(article)
     this.extractUserName(article)
     this.extractUserImage(article)
+  },
+
+  isAd(article) {
+    return !!article.parentElement.parentElement.querySelector('[data-testid=placementTracking]')
+  },
+  isRepost(article) {
+    return !!article.querySelector('[data-testid="socialContext"]')
   }
 }
