@@ -133,7 +133,7 @@ const ScribbleModalView = {
 
     // 戻るボタンのイベントリスナー
     this.root.querySelector('.back-btn').addEventListener('click', () => {
-      this.renderMain();
+      this.renderMain(this.user.id);
     });
 
     // const SAMPLE_HISTORY = [
