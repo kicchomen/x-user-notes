@@ -1,4 +1,3 @@
-// TODO: 履歴ボタンの disabled 状態
 // TODO: ユーザIDが変わった？機能
 //　　過去の情報を見るボタンが押せないとき、ヒントとして表示するのが直感的でわかりやすいかも
 // TODO: 履歴ページの実データ利用
@@ -50,12 +49,17 @@ const ScribbleModalView = {
             </div>
           </div>
   
-          <a class="history-btn">過去の情報を見る</a>
+          <button class="history-btn">過去の情報を見る</button>
   
         </div>
       </div>
     `;
-  
+
+    // 過去の情報を見るボタンの非活性化
+    if (this.user.history.length == 0) {
+      popup.querySelector('.history-btn').disabled = true
+    }
+
     // 既存のアノテーションをロード
     popup.querySelector('#annotation-text').value = this.user.memo;
     this.loadTags(this.user.tags);
@@ -87,6 +91,9 @@ const ScribbleModalView = {
 
     // 履歴ボタンのイベントリスナー
     popup.querySelector('.history-btn').addEventListener('click', () => {
+      // 非活性状態なら無視
+      if (popup.querySelector('.history-btn').disabled) return
+
       this.renderHistory();
     });
   

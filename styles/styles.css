@@ -233,12 +233,17 @@ h3, h4 {
 }
 
 .history-btn, .back-btn {
+  border: none;
   border-radius: 20px;
-  padding: 8px 12px;
+  padding: 6px 12px;
   font-size: 12px;
   background: black;
   color: white;
   cursor: pointer;
+}
+.history-btn:disabled, .back-btn:disabled {
+  background: grey;
+  cursor: default;
 }
 
 .history.scrollable {
