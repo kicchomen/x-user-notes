@@ -39,6 +39,7 @@ article .follow-notes-area {
   background: #f3aa15bf;
   padding: 3px 6px;
   font-size: 11px;
+  margin-right: 10px;
 }
 .follow-notes-area .tags .no-tag {
   background: #ccc;
