@@ -43,7 +43,7 @@ const Extractor = {
     const currentTab = document.querySelector('[data-testid="ScrollSnap-List"] [aria-selected="true"]')
     const tabName = currentTab?.textContent?.trim()
     if (!tabName) {
-      console.warn('cannot get current tab name')
+      // console.warn('cannot get current tab name')
       return
     }
 
