@@ -6,8 +6,12 @@
 const ScribbleModalView = {
   // ポップアップのルート要素
   root: null,
+  // 現在対象のユーザオブジェクト
+  user: null,
 
-  renderMain: async function (user) {
+  renderMain: async function (user_id) {
+    this.user = await Storage.getUser(user_id);
+
     // 既存のポップアップを削除
     const existingPopup = document.querySelector('.overlay');
     if (existingPopup) existingPopup.remove();
@@ -26,11 +30,11 @@ const ScribbleModalView = {
           </div>
 
           <div class="user-info">
-            <img src="${user.latest.profile_image_url}" alt="User Image">
+            <img src="${this.user.latest.profile_image_url}" alt="User Image">
             <div>
-              <p class="id">@${user.id}</p>
+              <p class="id">@${this.user.id}</p>
               <a class="resync-id-btn">→ ユーザ ID が変わったかも？</a>
-              <p class="name">${user.latest.name}</p>
+              <p class="name">${this.user.latest.name}</p>
             </div>
           </div>
         </div>
@@ -51,15 +55,15 @@ const ScribbleModalView = {
     `;
   
     // 既存のアノテーションをロード
-    popup.querySelector('#annotation-text').value = user.memo;
-    popup.querySelector('#annotation-tags').value = user.tags;
+    popup.querySelector('#annotation-text').value = this.user.memo;
+    popup.querySelector('#annotation-tags').value = this.user.tags;
   
     // 編集時のイベントリスナー
     const save = () => {
       // TODO: 保存した旨のメッセージを表示（差分確認する？）
       const memo = popup.querySelector('#annotation-text').value;
       const tags = popup.querySelector('#annotation-tags').value;
-      Storage.setUser({...user, memo: memo,tags: tags});
+      Storage.setUser({...this.user, memo: memo, tags: tags});
     }
 
     popup.querySelector('#annotation-text').addEventListener('blur', save);
@@ -75,13 +79,13 @@ const ScribbleModalView = {
 
     // 履歴ボタンのイベントリスナー
     popup.querySelector('.history-btn').addEventListener('click', () => {
-      this.renderHistory(user);
+      this.renderHistory();
     });
   
     document.body.appendChild(popup);
   },
 
-  renderHistory: async function (user) {
+  renderHistory: async function () {
     this.root.querySelector('.annotation-body').innerHTML = `
       <div class="history scrollable">
       </div>
@@ -91,7 +95,7 @@ const ScribbleModalView = {
 
     // 戻るボタンのイベントリスナー
     this.root.querySelector('.back-btn').addEventListener('click', () => {
-      this.renderMain(user);
+      this.renderMain();
     });
 
     // user.history.forEach()

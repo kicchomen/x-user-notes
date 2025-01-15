@@ -54,7 +54,7 @@ function injectAnnotationButtons() {
 
       // ボタン挿入
       Injector.inject(article, user, () => {
-        ScribbleModalView.renderMain(user)
+        ScribbleModalView.renderMain(user.id)
       })
 
       article.classList.add(PROCESSED_CLASS);
