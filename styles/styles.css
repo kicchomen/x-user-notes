@@ -180,6 +180,23 @@ h3, h4 {
   content: "Tags:";
 }
 
+#tags-container span.tag {
+  font-size: 12px;
+  padding: 4px 2px 4px 5px;
+  margin-right: 3px;
+  border-radius: 2px;
+  background: #f3aa15bf;
+  color: white;
+}
+#tags-container span.tag a {
+  cursor: pointer;
+  margin-left: 5px;
+  padding: 5px 3px;
+  font-size: 18px;
+  position: relative;
+  top: 1px;
+}
+
 .history-btn, .back-btn {
   border-radius: 20px;
   padding: 8px 12px;

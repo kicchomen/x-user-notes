@@ -3,6 +3,7 @@
 //　　過去の情報を見るボタンが押せないとき、ヒントとして表示するのが直感的でわかりやすいかも
 // TODO: 履歴ページの実データ利用
 
+
 const ScribbleModalView = {
   // ポップアップのルート要素
   root: null,
@@ -45,6 +46,7 @@ const ScribbleModalView = {
             </div>
             <div class="tags">
               <input id="annotation-tags" type="text" placeholder="タグをつけるとタイムライン上で視認することができます">
+              <div id="tags-container"></div>
             </div>
           </div>
   
@@ -56,18 +58,25 @@ const ScribbleModalView = {
   
     // 既存のアノテーションをロード
     popup.querySelector('#annotation-text').value = this.user.memo;
-    popup.querySelector('#annotation-tags').value = this.user.tags;
+    this.loadTags(this.user.tags);
   
     // 編集時のイベントリスナー
     const save = () => {
       // TODO: 保存した旨のメッセージを表示（差分確認する？）
       const memo = popup.querySelector('#annotation-text').value;
-      const tags = popup.querySelector('#annotation-tags').value;
+      const tags = Array.from(popup.querySelectorAll('.tag')).map(tag => tag.textContent.replace('×', '')).join(',');
       Storage.setUser({...this.user, memo: memo, tags: tags});
     }
 
     popup.querySelector('#annotation-text').addEventListener('blur', save);
-    popup.querySelector('#annotation-tags').addEventListener('blur', save);
+    popup.querySelector('#annotation-tags').addEventListener('keypress', (e) => {
+      if (e.key !== 'Enter') return
+
+      e.preventDefault();
+      this.addTag(e.target.value);
+      e.target.value = '';
+      save();
+    });
   
     // 閉じるボタンのイベントリスナー
     popup.querySelector('.close-btn').addEventListener('click', () => {
@@ -83,6 +92,35 @@ const ScribbleModalView = {
     });
   
     document.body.appendChild(popup);
+  },
+
+  loadTags: function(tags) {
+    const tagsContainer = this.root.querySelector('#tags-container');
+    tagsContainer.innerHTML = '';
+    tags.split(',').forEach(tag => this.addTag(tag));
+  },
+
+  addTag: function(tag) {
+    if (tag === '') return;
+
+    const tagsContainer = this.root.querySelector('#tags-container');
+    const tagElement = document.createElement('span');
+    tagElement.classList.add('tag');
+    tagElement.textContent = tag;
+    const removeBtn = document.createElement('a');
+    removeBtn.textContent = '×';
+    removeBtn.addEventListener('click', () => {
+      tagElement.remove();
+      this.saveTags();
+    });
+    tagElement.appendChild(removeBtn);
+    tagsContainer.appendChild(tagElement);
+  },
+
+  saveTags: function() {
+    const tags = Array.from(this.root.querySelectorAll('.tag')).map(tag => tag.textContent.replace('×', '')).join(',');
+    const memo = this.root.querySelector('#annotation-text').value;
+    Storage.setUser({...this.user, memo: memo, tags: tags});
   },
 
   renderHistory: async function () {
