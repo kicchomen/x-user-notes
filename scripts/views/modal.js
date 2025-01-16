@@ -163,7 +163,7 @@ const ScribbleModalView = {
     //   { date: new Date('2023-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' }
     // ]
     // SAMPLE_HISTORY.forEach(history => {
-    this.user.history.reverse().forEach(history => {
+    this.user.history.slice().reverse().forEach(history => {
       const historyElm = document.createElement('div')
       historyElm.classList.add('history-item')
       historyElm.innerHTML = `
