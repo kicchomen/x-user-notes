@@ -172,15 +172,8 @@ const ScribbleModalView = {
       this.renderMain(this.user.id);
     });
 
-    // const SAMPLE_HISTORY = [
-    //   { date: new Date('2025-01-10'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-    //   { date: new Date('2025-01-09'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-    //   { date: new Date('2025-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-    //   { date: new Date('2024-10-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-    //   { date: new Date('2023-12-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' },
-    //   { date: new Date('2023-01-01'), id: 'userid', name: 'ユーザ名', profile_image_url: 'https://pbs.twimg.com/profile_images/1733772876392869888/ved_zHcx_x96.jpg' }
-    // ]
-    // SAMPLE_HISTORY.forEach(history => {
+    // ユーザID が異なるユーザ履歴データに、ボタンを付与するため、比較用変数
+    let prev_user_id = this.user.id
     this.user.history.slice().reverse().forEach(history => {
       const historyElm = document.createElement('div')
       historyElm.classList.add('history-item')
@@ -198,8 +191,9 @@ const ScribbleModalView = {
       `
 
       // 今と ID が異なる場合、紐付けを解除するボタンを設定
-      // TODO: ボタンを間引く
-      if (history.id != this.user.id) {
+      if (history.id != prev_user_id) {
+        prev_user_id = history.id
+
         const btnElm = document.createElement('a')
         btnElm.classList.add('detach-id-btn')
         btnElm.innerText = '別人のためユーザを切り離す'

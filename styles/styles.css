@@ -348,7 +348,7 @@ h3, h4 {
   margin: 5px;
 }
 .history-item .user-info img {
-  width: 50px;
+  width: 60px;
 }
 .history-item:nth-child(even) .user-info {
   margin-left: 20px;
