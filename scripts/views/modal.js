@@ -37,7 +37,7 @@ const ScribbleModalView = {
         <div class="annotation-body">
           <div class="annotation">
             <div class="memo">
-              <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんなやり取りをしたかなど、自由に記述してみてください。" rows="3"></textarea>
+              <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんなやり取りをしたかなど、自由に記述してみてください" rows="4"></textarea>
             </div>
             <div class="tags">
               <div id="tags-container"></div>
@@ -155,7 +155,9 @@ const ScribbleModalView = {
     updateUserOnTimeline(this.user)
   },
 
-  renderHistory: async function () {
+  renderHistory: function () {
+    if (!this.root) return
+
     this.root.querySelector('.annotation-body').innerHTML = `
       <div class="scrollable-wrapper">
         <div class="history scrollable">
@@ -196,6 +198,7 @@ const ScribbleModalView = {
       `
 
       // 今と ID が異なる場合、紐付けを解除するボタンを設定
+      // TODO: ボタンを間引く
       if (history.id != this.user.id) {
         const btnElm = document.createElement('a')
         btnElm.classList.add('detach-id-btn')
@@ -232,20 +235,22 @@ const ScribbleModalView = {
 
     // 絞り込みフォームのリスナー
     document.querySelector('#user-search-filter-input')?.addEventListener('change', async (e) => {
-      const results = await Storage.search(e.target.value)
+      const results = await Storage.searchUser(e.target.value)
       this.drawResults(results)
     })
 
-    const results = await Storage.search()
+    const results = await Storage.searchUser()
     this.drawResults(results)
   },
 
   /**
    * ユーザ検索結果の描画処理
    * renderUserSearch からのみ呼ばれる想定
-   * @param {Array} results ユーザリスト（Storage.search の返り値）
+   * @param {Array} results ユーザリスト（Storage.searchUser の返り値）
    */
   drawResults: function (results) {
+    if (!this.root) return
+
     // 検索結果の最大表示件数
     const MAX_RESULTS = 30
 

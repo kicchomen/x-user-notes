@@ -40,7 +40,7 @@ const Storage = {
   },
 
   async getJson(key) {
-    result = await chrome.storage.local.get([key])
+    const result = await chrome.storage.local.get([key])
     if (!result[key]) return
     return JSON.parse(result[key])
   },
@@ -56,7 +56,7 @@ const Storage = {
    * @param {string} keyword 
    * @returns user[]
    */
-  async search(keyword) {
+  async searchUser(keyword) {
     keyword = keyword || ''
     keyword = keyword.replace(/[\u3000\s]+/g, ' ')
     keyword = normalizeText(keyword)
