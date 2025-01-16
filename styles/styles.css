@@ -124,6 +124,7 @@ h3, h4 {
 
 .user-info {
   display: flex;
+  position: relative;
 }
 .user-info > div {
   flex-grow: 1;
@@ -151,7 +152,8 @@ h3, h4 {
   content: "Name:";
 }
 
-.user-info a.resync-id-btn {
+.user-info a.resync-id-btn,
+.user-info a.detach-id-btn {
   color: #1da1f2;
   font-size: 11px;
   margin-left: 25px;
@@ -244,6 +246,15 @@ h3, h4 {
 .history-btn:disabled, .back-btn:disabled {
   background: grey;
   cursor: default;
+}
+
+.history .detach-id-btn {
+  position: absolute;
+  right: 10px;
+  bottom: 5px;
+  font-size: 12px;
+  color: #1ea1f1;
+  cursor: pointer;
 }
 
 .history.scrollable,

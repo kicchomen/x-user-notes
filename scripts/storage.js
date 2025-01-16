@@ -31,6 +31,14 @@ const Storage = {
     let key = `user:${user.id}`
     this.setJson(key, user)
   },
+  /**
+   * @param {User} user
+   */
+  removeUser(user) {
+    let key = `user:${user.id}`
+    chrome.storage.local.remove([key])
+  },
+
   async getJson(key) {
     result = await chrome.storage.local.get([key])
     if (!result[key]) return

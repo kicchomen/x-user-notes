@@ -29,6 +29,7 @@ const ScribbleModalView = {
             <div>
               <p class="id">@${this.user.id}</p>
               <a class="resync-id-btn">→ ユーザ ID が変わったかも？</a>
+              <a class="detach-id-btn">→ 紐付けを間違えたかも？</a>
               <p class="name">${this.user.latest.name}</p>
             </div>
           </div>
@@ -50,9 +51,24 @@ const ScribbleModalView = {
       </div>
     `;
 
-    // 過去の情報を見るボタンの非活性化
+    // TODO: ここごちゃごちゃしすぎ
     if (this.user.history.length == 0) {
+      // 過去の情報を見るボタンの非活性化
       popup.querySelector('.history-btn').disabled = true
+
+      popup.querySelector('.detach-id-btn')?.remove()
+    } else {
+      // 履歴に id が異なるデータがある場合、間違えて紐づけてしまった場合に切り戻せるように
+      const has_id_gap = this.user.history.some(u => {
+        return u.id != this.user.id
+      })
+      if (!has_id_gap) {
+        popup.querySelector('.detach-id-btn')?.remove()
+      } else {
+        popup.querySelector('.detach-id-btn')?.addEventListener('click', e => {
+          this.renderHistory()
+        })
+      }
     }
 
     // 既存のアノテーションをロード
@@ -178,6 +194,21 @@ const ScribbleModalView = {
           </div>
         </div>
       `
+
+      // 今と ID が異なる場合、紐付けを解除するボタンを設定
+      if (history.id != this.user.id) {
+        const btnElm = document.createElement('a')
+        btnElm.classList.add('detach-id-btn')
+        btnElm.innerText = '別人のためユーザを切り離す'
+        btnElm.addEventListener('click', async e => {
+          const index = this.user.history.indexOf(history)
+          this.unlinkUser(index)
+          this.renderHistory()
+          this.Message.info('データを切り離しました')
+        })
+        historyElm.querySelector('.user-info')?.appendChild(btnElm)
+      }
+
       this.root.querySelector('.history').appendChild(historyElm)
     })
   },
@@ -233,7 +264,7 @@ const ScribbleModalView = {
       `
       this.root.querySelector('.user-search').appendChild(userElm)
       userElm.addEventListener('click', async () => {
-        console.info(u)
+        this.linkUser(u)
         await this.renderMain(this.user.id);
         this.Message.info('選択したユーザ情報と紐付けました')
       })
@@ -246,6 +277,50 @@ const ScribbleModalView = {
       p_elm.innerText = '検索結果が多いため省略しています'
       this.root.querySelector('.user-search').appendChild(p_elm)
     }
+  },
+
+  /**
+   * src user を dst user に紐付ける。
+   * 具体的には、src user 情報を dst user の history にぶっ込んで
+   * src user は削除。
+   * @param {*} src_user 
+   */
+  linkUser: function (src_user) {
+    const dst_user = this.user
+    src_user.latest.memo = src_user.memo
+    src_user.latest.tags = src_user.tags
+    src_user.history.push(src_user.latest)
+    dst_user.history = src_user.history.concat(dst_user.history)
+
+    Storage.setUser(dst_user)
+    Storage.removeUser(src_user)
+  },
+
+  /**
+   * ユーザ紐付けを解除。
+   * 指定した履歴データ以降を切り離す
+   * @param {Number} history_index user.history で対象となる index
+   */
+  unlinkUser: function (history_index) {
+    if (this.user.history.length == 0) return
+    if (history_index >= this.user.history.length) return
+
+    // TODO: ユーザ管理系のモジュールで管理したい
+    this.user.history[history_index]
+    const recovery_user_history = this.user.history.splice(0, history_index+1)
+    const recovery_user_latest = recovery_user_history.pop()
+    
+    const recovery_user = {
+      id: recovery_user_latest.id,
+      memo: recovery_user_latest.memo || '',
+      tags: recovery_user_latest.tags || '',
+      latest: recovery_user_latest,
+      history: recovery_user_history,
+      version: SYSTEM_VERSION
+    }
+
+    Storage.setUser(this.user)
+    Storage.setUser(recovery_user)
   },
 
   Message: {
