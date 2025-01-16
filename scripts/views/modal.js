@@ -91,6 +91,11 @@ const ScribbleModalView = {
 
       this.renderHistory();
     });
+
+    // ユーザ検索ボタンのイベントリスナー
+    popup.querySelector('.resync-id-btn').addEventListener('click', () => {
+      this.renderUserSearch();
+    });
   
     document.body.appendChild(popup);
   },
@@ -136,7 +141,9 @@ const ScribbleModalView = {
 
   renderHistory: async function () {
     this.root.querySelector('.annotation-body').innerHTML = `
-      <div class="history scrollable">
+      <div class="scrollable-wrapper">
+        <div class="history scrollable">
+        </div>
       </div>
 
       <a class="back-btn">戻る</a>
@@ -173,6 +180,72 @@ const ScribbleModalView = {
       `
       this.root.querySelector('.history').appendChild(historyElm)
     })
+  },
+
+  renderUserSearch: async function () {
+    this.root.querySelector('.annotation-body').innerHTML = `
+      <p class="step">キーワードで絞り込んで、変更前と思われるユーザ ID を選択してください</p>
+      <input id="user-search-filter-input" type="text" placeholder="キーワードでユーザ絞り込み">
+      <div class="scrollable-wrapper">
+        <div class="user-search scrollable">
+        </div>
+      </div>
+
+      <a class="back-btn">戻る</a>
+    `
+
+    // 戻るボタンのイベントリスナー
+    this.root.querySelector('.back-btn').addEventListener('click', () => {
+      this.renderMain(this.user.id);
+    });
+
+    // 絞り込みフォームのリスナー
+    document.querySelector('#user-search-filter-input')?.addEventListener('change', async (e) => {
+      const results = await Storage.search(e.target.value)
+      this.drawResults(results)
+    })
+
+    const results = await Storage.search()
+    this.drawResults(results)
+  },
+
+  /**
+   * ユーザ検索結果の描画処理
+   * renderUserSearch からのみ呼ばれる想定
+   * @param {Array} results ユーザリスト（Storage.search の返り値）
+   */
+  drawResults: function (results) {
+    // 検索結果の最大表示件数
+    const MAX_RESULTS = 30
+
+    this.root.querySelector('.user-search').innerHTML = ''
+    results.slice(0, MAX_RESULTS).forEach(u => {
+      const userElm = document.createElement('div')
+      userElm.classList.add('user-item')
+      userElm.innerHTML = `
+        <div class="user-info">
+          <img src="${u.latest.profile_image_url}" alt="User Image">
+          <div>
+            <p class="id">@${u.id}</p>
+            <p class="name">${u.latest.name}</p>
+          </div>
+        </div>
+      `
+      this.root.querySelector('.user-search').appendChild(userElm)
+      userElm.addEventListener('click', async () => {
+        console.info(u)
+        await this.renderMain(this.user.id);
+        this.Message.info('選択したユーザ情報と紐付けました')
+      })
+    })
+
+    // 補足メッセージ
+    this.root.querySelector('.user-search > p')?.remove()
+    if (results.length > MAX_RESULTS) {
+      const p_elm = document.createElement('p')
+      p_elm.innerText = '検索結果が多いため省略しています'
+      this.root.querySelector('.user-search').appendChild(p_elm)
+    }
   },
 
   Message: {

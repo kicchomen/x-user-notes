@@ -43,6 +43,7 @@ article .follow-notes-area {
   background: #ccc;
 }
 
+/* モーダル */
 .overlay {
   position: fixed;
   top: 0;
@@ -245,32 +246,36 @@ h3, h4 {
   cursor: default;
 }
 
-.history.scrollable {
+.history.scrollable,
+.user-search.scrollable {
   overflow-y: auto;
   max-height: 400px;
   width: calc(100% + 30px);
   position: relative;
   left: -15px;
-  top: -15px;
+  top: 0px;
   padding-bottom: 60px;
 }
-.history.scrollable::before,
-.history.scrollable::after {
+.scrollable-wrapper {
+  position: relative;
+}
+.scrollable-wrapper::before,
+.scrollable-wrapper::after {
   content: "";
   display: block;
   height: 15px;
   z-index: 1;
-  position: fixed;
-  left: 5px;
-  right: 5px;
+  position: absolute;
+  left: -15px;
+  right: -15px;
 }
-.history.scrollable::before {
-  top: 130px;
+.scrollable-wrapper::before {
+  top: 0px;
   background: linear-gradient(180deg, white, transparent);
 }
-.history.scrollable::after {
+.scrollable-wrapper::after {
   height: 60px;
-  bottom: 60px;
+  bottom: 0px;
   background: linear-gradient(0deg, white, transparent);
 }
 
@@ -335,4 +340,32 @@ h3, h4 {
 }
 .history-item:nth-child(even) .user-info {
   margin-left: 20px;
+}
+
+/* ユーザ検索 */
+p.step {
+  margin: 0 0 10px;
+  color: #333;
+}
+#user-search-filter-input {
+  box-sizing: border-box;
+  width: 100%;
+  padding: 10px 8px;
+  border: 1px solid #888;
+  margin: 0 0 10px 0;
+}
+.user-search {
+  padding-top: 10px;
+  border-top: 2px solid black;
+}
+.user-search .user-item {
+  cursor: pointer;
+  border-bottom: 1px solid #eee;
+}
+.user-search .user-item:hover {
+  opacity: 0.8;
+  background: #eeeeee;
+}
+.user-search .user-info > div {
+  margin-top: 10px;
 }
