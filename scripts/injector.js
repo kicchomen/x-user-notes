@@ -1,6 +1,3 @@
-// TODO: ここは inject 処理に特化して、html の生成は切り分けたい
-
-
 const ANNOTATION_BUTTON_CLASS = 'user-annotation-btn';
 
 const Injector = {

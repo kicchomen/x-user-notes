@@ -1,7 +1,3 @@
-// TODO:
-//   repost や広告に対応
-
-
 const Extractor = {
   extractUserID(article) {
     return article.querySelector('[data-testid*="UserAvatar-Container-"] a').href.split('/').pop()
