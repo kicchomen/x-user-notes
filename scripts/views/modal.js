@@ -29,6 +29,12 @@ const ScribbleModalView = {
             <div>
               <p class="id">@${this.user.id}</p>
               <a class="resync-id-btn">→ ユーザ ID が変わったかも？</a>
+              <div class="help-btn">
+                <i>i</i>
+                <div class="tooltips">
+                  もしこのユーザが ID を変更した場合、同一アカウントであることを自動で判別できません。そのため紐付ける設定を手動で行う必要があります。
+                </div>
+              </div>
               <a class="detach-id-btn">→ 紐付けを間違えたかも？</a>
               <p class="name">${this.user.latest.name}</p>
             </div>

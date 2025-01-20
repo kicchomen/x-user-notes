@@ -383,3 +383,56 @@ p.step {
 .user-search .user-info > div {
   margin-top: 10px;
 }
+
+.help-btn {
+  display: inline-block;
+  vertical-align: middle;
+  position: relative;
+  top: -1px;
+}
+.help-btn i {
+  background: #00000066;
+  font-style: normal;
+  cursor: pointer;
+  font-size: 11px;
+  font-family: serif;
+  font-weight: bold;
+  line-height: 14px;
+  text-align: center;
+  height: 14px;
+  border-radius: 14px;
+  width: 14px;
+  display: inline-block;
+  color: white;
+}
+.help-btn .tooltips {
+  display: inline-block;
+  visibility: hidden;
+  transition: 0.2s;
+  position: absolute;
+  top: 30px;
+  left: 7px;
+  background: black;
+  opacity: 0.7;
+  color: white;
+  font-size: 12px;
+  max-width: 400px;
+  z-index: 1;
+  padding: 5px;
+  word-break: keep-all;
+  transform: translateX(-50%);
+}
+.help-btn .tooltips:before {
+  content: "";
+  display: inline-block;
+  clip-path: polygon(50% 0%, 0% 100%, 100% 100%);
+  background: black;
+  position: absolute;
+  top: -10px;
+  left: calc(50% - 10px);
+  width: 20px;
+  height: 10px;
+}
+.help-btn:hover .tooltips {
+  visibility: visible;
+}
