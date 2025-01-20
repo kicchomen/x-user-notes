@@ -15,7 +15,10 @@ const Injector = {
   createOpenButton(callback) {
     const button = document.createElement('button')
     button.classList.add(ANNOTATION_BUTTON_CLASS)
-    button.textContent = '📓 Open Scribble'
+    const icon_url = chrome.runtime.getURL("assets/icon.png");
+    button.innerHTML = `
+      <img src="${icon_url}">Scribble
+    `
     button.addEventListener('click', () => callback())
     return button
   },

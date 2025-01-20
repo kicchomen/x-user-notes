@@ -15,7 +15,7 @@ const ScribbleModalView = {
     const popup = document.createElement('div');
     this.root = popup;
     popup.classList.add('overlay');
-    const icon_url = chrome.runtime.getURL("assets/logo.png");
+    const icon_url = chrome.runtime.getURL("assets/icon.png");
     popup.innerHTML = `
       <div class="user-annotation-popup">
         <div class="annotation-header">
