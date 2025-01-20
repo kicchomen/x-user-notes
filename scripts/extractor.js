@@ -3,12 +3,19 @@ const Extractor = {
     return article.querySelector('[data-testid*="UserAvatar-Container-"] a').href.split('/').pop()
   },
   extractUserImage(article) {
+    let url
+
     // タイムライン
-    const img_elm = article.querySelector('[data-testid="Tweet-User-Avatar"] img')
-    if (img_elm) return img_elm.src
+    let img_elm = article.querySelector('[data-testid="Tweet-User-Avatar"] img')
+    if (img_elm) url = img_elm.src
 
     // フォロー一覧
-    return article.lastChild.firstChild.querySelector('img')?.src
+    img_elm = article.lastChild.firstChild.querySelector('img')
+    if (img_elm) url = img_elm.src
+
+    // 利用ディスプレイによって画像サイズ（URL）が変わるのでその対策
+    url = url.replace("normal.png", "200x200.png").replace("x96.png", "200x200.png")
+    return url
   },
   extractUserName(article) {
     // タイムライン
