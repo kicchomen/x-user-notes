@@ -34,6 +34,7 @@ const Extractor = {
 
   // ページ全般の情報取得系
   isRecommendTab() {
+    // 日本語、英語のみ対応
     const RECOMMEND_TAB_NAMES = ['For you', 'おすすめ']
 
     const currentTab = document.querySelector('[data-testid="ScrollSnap-List"] [aria-selected="true"]')
@@ -45,5 +46,23 @@ const Extractor = {
 
     return (RECOMMEND_TAB_NAMES.indexOf(tabName) !== -1)
 
+  },
+  isEngagementTab() {
+    // 日本語、英語のみ対応
+    const ENGAGEMENT_TAB_NAMES = ['Quotes', '引用']
+
+    const currentTab = document.querySelector('[data-testid="ScrollSnap-List"] [aria-selected="true"]')
+    const tabName = currentTab?.textContent?.trim()
+    if (!tabName) {
+      // console.warn('cannot get current tab name')
+      return
+    }
+
+    return (ENGAGEMENT_TAB_NAMES.indexOf(tabName) !== -1)
+
+  },
+
+  isSearchPage() {
+    return document.querySelector('[data-testid="primaryColumn"] [data-testid="SearchBox_Search_Input"]')
   },
 }

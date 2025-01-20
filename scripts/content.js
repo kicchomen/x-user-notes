@@ -6,8 +6,10 @@ function injectAnnotationButtons() {
     // 追加の選択子を必要に応じて追加
   ];
 
-  // おすすめタブでは実行しない
+  // エンゲージメント、検索ページ、おすすめタブでは実行しない
   if (Extractor.isRecommendTab()) return
+  if (Extractor.isSearchPage()) return
+  if (Extractor.isEngagementTab()) return
 
   // 処理済みのコンポーネントに付与するクラス名
   const PROCESSED_CLASS = 'processed'
