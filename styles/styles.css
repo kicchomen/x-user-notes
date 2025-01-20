@@ -314,31 +314,20 @@ h3, h4 {
   display: inline-block;
   position: absolute;
   top: 33px;
-  left: 65px;
+  left: 74px;
   width: 13px;
   height: 13px;
-  background: #ebe8da;
+  background: white;
+  border: 1px solid #aaa;
   border-radius: 50%;
   z-index: 1;
 }
 
-.history-item::after {
-  content: "";
-  display: inline-block;
-  position: absolute;
-  top: 30px;
-  left: 62px;
-  width: 19px;
-  height: 19px;
-  background: white;
-  border-radius: 50%;
-}
-
 .history-item .date {
   width: 60px;
-  margin: 0 20px 0 0;
-  padding-right: 10px;
-  border-right: 3px solid #ffd500;
+  margin: 0;
+  padding: 0 10px;
+  border-right: 3px double #ccc;
   display: flex;
   justify-content: center;
   flex-direction: column;
@@ -346,25 +335,25 @@ h3, h4 {
 }
 
 .history-item .date span {
-  border: 1px solid #ccc;
+  background: #bbb;
   border-radius: 10px;
-  color: #666;
+  color: white;
   padding: 2px 5px;
   text-align: center;
   font-size: 10px;
 }
 
 .history-item .user-info {
-  background: #eae8da;
-  width: calc(100% - 135px);
+  /* background: #fafafa; */
+  width: 100%;
   padding: 10px;
-  margin: 5px;
+  margin: 0px;
+  border-top: 1px solid #ccc;
+  height: 81px;
+  box-sizing: border-box;
 }
 .history-item .user-info img {
   width: 60px;
-}
-.history-item:nth-child(even) .user-info {
-  margin-left: 20px;
 }
 
 /* ユーザ検索 */
