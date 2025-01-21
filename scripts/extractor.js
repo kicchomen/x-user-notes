@@ -14,7 +14,7 @@ const Extractor = {
     if (img_elm) url = img_elm.src
 
     // 利用ディスプレイによって画像サイズ（URL）が変わるのでその対策
-    url = url.replace("normal.png", "200x200.png").replace("x96.png", "200x200.png")
+    url = url.replace("normal.", "200x200.").replace("x96.", "200x200.").replace("400x400.", "200x200.")
     return url
   },
   extractUserName(article) {
