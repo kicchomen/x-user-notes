@@ -142,7 +142,7 @@ h3, h4 {
 }
 .user-info > div {
   flex-grow: 1;
-  overflow: hidden;
+  max-width: calc(100% - 80px);
 }
 .user-info img {
   width: 70px;
@@ -153,6 +153,7 @@ h3, h4 {
   overflow: hidden;
   white-space: nowrap;
   text-overflow: ellipsis;
+  /* max-width: calc(100% - 100px); */
 }
 .user-info p::before {
   color: #777;
