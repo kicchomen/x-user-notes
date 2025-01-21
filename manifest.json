@@ -6,13 +6,15 @@
   "default_locale": "en",
   "permissions": [
     "storage",
-    "activeTab"
+    "activeTab",
+    "downloads"
   ],
   "host_permissions": [
     "https://x.com/*"
   ],
   "action": {
-    "default_icon": "assets/logo.png"
+    "default_icon": "assets/logo.png",
+    "default_popup": "popup/index.html"
   },
   "content_scripts": [
     {

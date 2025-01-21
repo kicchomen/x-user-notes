@@ -4,5 +4,12 @@
   },
   "appDescription": {
     "message": "Take quick notes about the people you follow on X."
+  },
+
+  "exportData": {
+    "message": "Export data"
+  },
+  "importData": {
+    "message": "Import data"
   }
 }
