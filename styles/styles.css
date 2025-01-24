@@ -25,11 +25,13 @@ article .follow-notes-area {
   opacity: 0.7;
 }
 .follow-notes-area .user-annotation-btn img {
-  width: 15px;
-  margin-right: 3px;
+  width: 17px;
+  margin-right: 2px;
   position: relative;
   display: inline-block;
-  top: 2px;
+  top: 4px;
+  margin-top: -4px;
+  opacity: 0.75;
 }
 
 .follow-notes-area .tags {
@@ -100,9 +102,9 @@ article .follow-notes-area {
   margin-bottom: 10px;
 }
 .annotation-header .title h3 {
-  border-bottom: 2px solid;
+  border-bottom: 1.5px solid;
   font-style: italic;
-  color: #bfa167;
+  color: #a48648;
 }
 
 h3, h4 {
@@ -111,9 +113,10 @@ h3, h4 {
 
 .annotation-header .title img {
   position: relative;
-  top: 3px;
-  width: 23px;
-  margin-right: 5px;
+  top: 7px;
+  left: -2px;
+  width: 30px;
+  margin-top: -6px;
 }
 
 .close-btn {
