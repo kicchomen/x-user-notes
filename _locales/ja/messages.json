@@ -13,5 +13,59 @@
   "importData": {
     "message": "ユーザデータのインポート",
     "description": "コンテキストメニュー"
+  },
+
+  "userIdChanged": {
+    "message": "ユーザ ID が変わったかも？",
+    "description": "モーダル内のヘルプリンク"
+  },
+  "userLinkIncorrect": {
+    "message": "紐付けを間違えたかも？",
+    "description": "モーダル内のヘルプリンク"
+  },
+  "userLinkHelp": {
+    "message": "もしこのユーザが ID を変更した場合、同一アカウントであることを自動で判別できません。そのため紐付ける設定を手動で行う必要があります。",
+    "description": "モーダル内のヘルプリンクに対するヘルプ文言"
+  },
+  "placeholderMemo": {
+    "message": "ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんなやり取りをしたかなど、自由に記述してみてください",
+    "description": "モーダル内の文言"
+  },
+  "placeholderTags": {
+    "message": "タグをつけるとタイムライン上で視認することができます",
+    "description": "モーダル内の文言"
+  },
+  "historyLink": {
+    "message": "過去の情報を見る",
+    "description": "モーダル内の文言"
+  },
+
+  "back": {
+    "message": "戻る",
+    "description": "モーダル内の文言"
+  },
+  "detachUser": {
+    "message": "別人のためユーザを切り離す",
+    "description": "モーダル内の文言"
+  },
+  "detachedUser": {
+    "message": "データを切り離しました",
+    "description": "モーダル内の文言"
+  },
+  "attachUserStep": {
+    "message": "キーワードで絞り込んで、変更前と思われるユーザ ID を選択してください",
+    "description": "モーダル内の文言"
+  },
+  "placeholderFilterUser": {
+    "message": "キーワードでユーザ絞り込み",
+    "description": "モーダル内の文言"
+  },
+  "attachedUser": {
+    "message": "選択したユーザ情報と紐付けました",
+    "description": "モーダル内の文言"
+  },
+  "omitResults": {
+    "message": "検索結果が多いため省略しています",
+    "description": "モーダル内の文言"
   }
 }

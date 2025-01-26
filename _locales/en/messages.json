@@ -11,5 +11,59 @@
   },
   "importData": {
     "message": "Import data"
+  },
+
+  "userIdChanged": {
+    "message": "The user ID might have changed?",
+    "description": "モーダル内のヘルプリンク"
+  },
+  "userLinkIncorrect": {
+    "message": "The link might be incorrect?",
+    "description": "モーダル内のヘルプリンク"
+  },
+  "userLinkHelp": {
+    "message": "If this user has changed their ID, it is not possible to automatically determine that it is the same account. You will need to manually configure the link.",
+    "description": "モーダル内のヘルプリンクに対するヘルプ文言"
+  },
+  "placeholderMemo": {
+    "message": "This is the memo section. Feel free to write about the user's characteristics, why you followed them, or any past interactions you had.",
+    "description": "モーダル内の文言"
+  },
+  "placeholderTags": {
+    "message": "Adding tags allows you to easily identify them on the timeline.",
+    "description": "モーダル内の文言"
+  },
+  "historyLink": {
+    "message": "View past information",
+    "description": "モーダル内の文言"
+  },
+
+  "back": {
+    "message": "Go back",
+    "description": "モーダル内の文言"
+  },
+  "detachUser": {
+    "message": "Unlink the user as they are a different person.",
+    "description": "モーダル内の文言"
+  },
+  "detachedUser": {
+    "message": "The data has been unlinked.",
+    "description": "モーダル内の文言"
+  },
+  "attachUserStep": {
+    "message": "Filter by keywords and select the user ID that you believe existed before the change.",
+    "description": "モーダル内の文言"
+  },
+  "placeholderFilterUser": {
+    "message": "Filter users by keyword",
+    "description": "モーダル内の文言"
+  },
+  "attachedUser": {
+    "message": "Linked with the selected user.",
+    "description": "モーダル内の文言"
+  },
+  "omitResults": {
+    "message": "Some results have been omitted due to the large number of search results.",
+    "description": "モーダル内の文言"
   }
 }

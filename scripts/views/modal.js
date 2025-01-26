@@ -5,6 +5,7 @@ const ScribbleModalView = {
   user: null,
 
   renderMain: async function (user_id) {
+    const _ = chrome.i18n.getMessage
     this.user = await Storage.getUser(user_id);
 
     // 既存のポップアップを削除
@@ -20,7 +21,7 @@ const ScribbleModalView = {
       <div class="user-annotation-popup">
         <div class="annotation-header">
           <div class="title">
-            <h3><img src="${icon_url}">X Followees Scribble</h3>
+            <h3><img src="${icon_url}">${_("appName")}</h3>
             <button class="close-btn">×</button>
           </div>
 
@@ -28,14 +29,14 @@ const ScribbleModalView = {
             <img src="${this.user.latest.profile_image_url}" alt="User Image">
             <div>
               <p class="id">@${this.user.id}</p>
-              <a class="resync-id-btn">→ ユーザ ID が変わったかも？</a>
+              <a class="resync-id-btn">→ ${_("userIdChanged")}</a>
               <div class="help-btn">
                 <i>i</i>
                 <div class="tooltips">
-                  もしこのユーザが ID を変更した場合、同一アカウントであることを自動で判別できません。そのため紐付ける設定を手動で行う必要があります。
+                  ${_("userLinkHelp")}
                 </div>
               </div>
-              <a class="detach-id-btn">→ 紐付けを間違えたかも？</a>
+              <a class="detach-id-btn">→ ${_("userLinkIncorrect")}</a>
               <p class="name">${this.user.latest.name}</p>
             </div>
           </div>
@@ -43,15 +44,15 @@ const ScribbleModalView = {
         <div class="annotation-body">
           <div class="annotation">
             <div class="memo">
-              <textarea id="annotation-text" placeholder="ここはメモ欄です。ユーザの特徴、フォローしたきっかけや、過去にどんなやり取りをしたかなど、自由に記述してみてください" rows="4"></textarea>
+              <textarea id="annotation-text" placeholder="${_("placeholderMemo")}" rows="4"></textarea>
             </div>
             <div class="tags">
               <div id="tags-container"></div>
-              <input id="annotation-tags" type="text" placeholder="タグをつけるとタイムライン上で視認することができます">
+              <input id="annotation-tags" type="text" placeholder="${_("placeholderTags")}">
             </div>
           </div>
   
-          <button class="history-btn">過去の情報を見る</button>
+          <button class="history-btn">${_("historyLink")}</button>
   
         </div>
       </div>
@@ -163,6 +164,7 @@ const ScribbleModalView = {
 
   renderHistory: function () {
     if (!this.root) return
+    const _ = chrome.i18n.getMessage
 
     this.root.querySelector('.annotation-body').innerHTML = `
       <div class="scrollable-wrapper">
@@ -170,7 +172,7 @@ const ScribbleModalView = {
         </div>
       </div>
 
-      <a class="back-btn">戻る</a>
+      <a class="back-btn">${_("back")}</a>
     `
 
     // 戻るボタンのイベントリスナー
@@ -202,12 +204,12 @@ const ScribbleModalView = {
 
         const btnElm = document.createElement('a')
         btnElm.classList.add('detach-id-btn')
-        btnElm.innerText = '別人のためユーザを切り離す'
+        btnElm.innerText = _("detachUser")
         btnElm.addEventListener('click', async e => {
           const index = this.user.history.indexOf(history)
           this.unlinkUser(index)
           this.renderHistory()
-          this.Message.info('データを切り離しました')
+          this.Message.info(_("detachedUser"))
         })
         historyElm.querySelector('.user-info')?.appendChild(btnElm)
       }
@@ -217,15 +219,16 @@ const ScribbleModalView = {
   },
 
   renderUserSearch: async function () {
+    const _ = chrome.i18n.getMessage
     this.root.querySelector('.annotation-body').innerHTML = `
-      <p class="step">キーワードで絞り込んで、変更前と思われるユーザ ID を選択してください</p>
-      <input id="user-search-filter-input" type="text" placeholder="キーワードでユーザ絞り込み">
+      <p class="step">${_("attachUserStep")}</p>
+      <input id="user-search-filter-input" type="text" placeholder="${_("placeholderFilterUser")}">
       <div class="scrollable-wrapper">
         <div class="user-search scrollable">
         </div>
       </div>
 
-      <a class="back-btn">戻る</a>
+      <a class="back-btn">${_("back")}</a>
     `
 
     // 戻るボタンのイベントリスナー
@@ -250,6 +253,7 @@ const ScribbleModalView = {
    */
   drawResults: function (results) {
     if (!this.root) return
+    const _ = chrome.i18n.getMessage
 
     // 検索結果の最大表示件数
     const MAX_RESULTS = 30
@@ -271,7 +275,7 @@ const ScribbleModalView = {
       userElm.addEventListener('click', async () => {
         this.linkUser(u)
         await this.renderMain(this.user.id);
-        this.Message.info('選択したユーザ情報と紐付けました')
+        this.Message.info(_("attachedUser"))
       })
     })
 
@@ -279,7 +283,7 @@ const ScribbleModalView = {
     this.root.querySelector('.user-search > p')?.remove()
     if (results.length > MAX_RESULTS) {
       const p_elm = document.createElement('p')
-      p_elm.innerText = '検索結果が多いため省略しています'
+      p_elm.innerText = _("omitResults")
       this.root.querySelector('.user-search').appendChild(p_elm)
     }
   },
