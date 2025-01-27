@@ -372,19 +372,20 @@ const updateUserOnTimeline = (user) => {
 
 
 const timeAgo = function(date) {
+  const _ = chrome.i18n.getMessage
   const now = new Date();
   const created_at = new Date(date)
   const seconds = Math.floor((now - created_at) / 1000);
   let interval = Math.floor(seconds / 31536000);
 
-  if (interval > 1) return interval + " 年前";
+  if (interval > 1) return _("dateBeforeYear").replace("%s", interval)
   interval = Math.floor(seconds / 2592000);
-  if (interval > 1) return interval + " ヶ月前";
+  if (interval > 1) return _("dateBeforeMonth").replace("%s", interval);
   interval = Math.floor(seconds / 86400);
-  if (interval > 1) return interval + " 日前";
+  if (interval > 1) return _("dateBeforeDay").replace("%s", interval);
   interval = Math.floor(seconds / 3600);
-  if (interval > 1) return interval + " 時間前";
+  if (interval > 1) return _("dateBeforeHour").replace("%s", interval);
   interval = Math.floor(seconds / 60);
-  if (interval > 1) return interval + " 分前";
-  return Math.floor(seconds) + " 秒前";
+  if (interval > 1) return _("dateBeforeMinute").replace("%s", interval);
+  return _("dateBeforeSecond").replace("%s", interval);
 }

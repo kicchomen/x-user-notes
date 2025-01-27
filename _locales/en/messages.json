@@ -65,5 +65,30 @@
   "omitResults": {
     "message": "Some results have been omitted due to the large number of search results.",
     "description": "モーダル内の文言"
+  },
+
+  "dateBeforeYear": {
+    "message": "%s years ago",
+    "description": "過去の日付"
+  },
+  "dateBeforeMonth": {
+    "message": "%s months ago",
+    "description": "過去の日付"
+  },
+  "dateBeforeDay": {
+    "message": "%s days ago",
+    "description": "過去の日付"
+  },
+  "dateBeforeHour": {
+    "message": "%sh",
+    "description": "過去の日付"
+  },
+  "dateBeforeMinute": {
+    "message": "%sm",
+    "description": "過去の日付"
+  },
+  "dateBeforeSecond": {
+    "message": "%ss",
+    "description": "過去の日付"
   }
 }

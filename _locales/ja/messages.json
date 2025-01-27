@@ -67,5 +67,30 @@
   "omitResults": {
     "message": "検索結果が多いため省略しています",
     "description": "モーダル内の文言"
+  },
+
+  "dateBeforeYear": {
+    "message": "%s 年前",
+    "description": "過去の日付"
+  },
+  "dateBeforeMonth": {
+    "message": "%s ヶ月前",
+    "description": "過去の日付"
+  },
+  "dateBeforeDay": {
+    "message": "%s 日前",
+    "description": "過去の日付"
+  },
+  "dateBeforeHour": {
+    "message": "%s 時間前",
+    "description": "過去の日付"
+  },
+  "dateBeforeMinute": {
+    "message": "%s 分前",
+    "description": "過去の日付"
+  },
+  "dateBeforeSecond": {
+    "message": "%s 秒前",
+    "description": "過去の日付"
   }
 }
