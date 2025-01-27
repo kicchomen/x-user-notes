@@ -49,9 +49,6 @@ article .follow-notes-area {
   font-size: 11px;
   margin-right: 10px;
 }
-.follow-notes-area .tags .no-tag {
-  background: #ccc;
-}
 
 /* モーダル */
 .overlay {

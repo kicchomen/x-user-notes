@@ -35,16 +35,6 @@ const Injector = {
       root.appendChild(tagElement)
     })
 
-    // Scribble にデータが無いユーザはその旨のタグ表示
-    // TODO: 要検討
-    if (user.memo === '' && user.tags === '' && !user.history.length) {
-      const tagElement = document.createElement('span')
-      tagElement.classList.add('tag')
-      tagElement.classList.add('no-tag')
-      tagElement.textContent = "no data"
-      root.appendChild(tagElement)
-    }
-
     return root
   }
 }
