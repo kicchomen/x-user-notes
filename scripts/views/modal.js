@@ -21,7 +21,7 @@ const ScribbleModalView = {
       <div class="user-annotation-popup">
         <div class="annotation-header">
           <div class="title">
-            <h3><img src="${icon_url}">${_("appName")}</h3>
+            <h3><img src="${icon_url}">X Followees Scribble</h3>
             <button class="close-btn">×</button>
           </div>
 
