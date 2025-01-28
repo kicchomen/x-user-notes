@@ -103,7 +103,15 @@ const ScribbleModalView = {
     popup.querySelector('.close-btn').addEventListener('click', () => {
       popup.remove();
     });
+
+    // マウスダウンした領域を記録して、
+    // モーダル内でマウスダウン、モーダル外でマウスアップした場合、閉じないよう配慮
+    let click_src_element = null
+    popup.addEventListener('mousedown', (e) => {
+      click_src_element = e.target
+    })
     popup.addEventListener('click', (e) => {
+      if (click_src_element && click_src_element != e.target) return
       if (e.target === popup) popup.remove();
     });
 
